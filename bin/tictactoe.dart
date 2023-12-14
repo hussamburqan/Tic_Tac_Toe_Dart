@@ -21,8 +21,8 @@ class GameTicTacToe{
     while(noOneWin){
       getBoard();
       stdout.write('Player $playerNumber Enter your place to place $playerSymbol\n');
-      put = int.parse(stdin.readLineSync()!);
-      checkSaveMove();
+      put = int.parse(stdin.readLineSync()!); //Taking input from player
+      checkSavePut();
     }
     playagain();
   }
@@ -57,7 +57,7 @@ class GameTicTacToe{
     }
   }
 
-  void checkSaveMove(){
+  void checkSavePut(){
     //The site is checked if it is empty.
     if(board[put] == 'X'|| board[put] == 'O'){
       stdout.write('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n');
@@ -123,7 +123,7 @@ class GameTicTacToe{
 
   String getPlayerSymbols(String playerSymbol){
     //Change the player's symbol
-    return playerSymbol = playerSymbol =='X' ? 'O' : 'X';
+    return playerSymbol = playerSymbol == 'X' ? 'O' : 'X';
   }
 
   void getBoard() {
