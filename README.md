@@ -163,4 +163,6 @@ void playagain(){
     }
   }
 ```
+---
+Example of a game
 ![tictactoe](https://github.com/hussamburqan/Tic_Tac_Toe_Dart/assets/116378522/f1933858-a4ec-4446-836b-2ef4b8188cfb)
