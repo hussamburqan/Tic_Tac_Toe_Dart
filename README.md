@@ -27,6 +27,7 @@ void main() {
     playagain();
   }
 ```
+---
 `SelectSymbol()` The function allows you to choose between X or O
 ```dart
   void SelectSymbol(){
