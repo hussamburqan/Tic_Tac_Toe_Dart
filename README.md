@@ -27,5 +27,5 @@ void main() {
     playagain();
   }
 ```
--SelectSymbol- The function allows you to choose between X or O
+`1SelectSymbol` The function allows you to choose between X or O
 
