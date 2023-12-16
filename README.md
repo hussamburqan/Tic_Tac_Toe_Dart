@@ -8,35 +8,53 @@
 
 ```dart 
 void main() {
-  GameTicTacToe TicTacToe = GameTicTacToe();
+  GameTicTacToe ticTacToe = GameTicTacToe();
   //Start game
-  TicTacToe.start();
+  ticTacToe.start();
 }
 ```
 ---
 ```dart 
   void start(){
-    SelectSymbol();
+    selectSymbol();
     noOneWin == true;
+
     while(noOneWin){
-      getBoard();
-      stdout.write('Player $playerNumber Enter your place to place $playerSymbol\n');
-      put = int.parse(stdin.readLineSync()!); //Taking input from player
-       checkSavePut();
+      readData();
     }
-    playagain();
+    playAgain();
   }
 ```
 ---
-`SelectSymbol()` The function allows you to choose between X or O
+`selectSymbol()` The function allows you to choose between X or O
 ```dart
-  void SelectSymbol(){
+void selectSymbol(){
     stdout.write('Player $playerNumber Select \n1 for Symbol \'O\' \n2 for Symbol \'X\'\n');
     int No = int.parse(stdin.readLineSync()!);
     if (No == 1){
       playerSymbol = 'O';
     }else if(No == 2) {
       playerSymbol = 'X';
+    }else {
+      print('Error Input');
+      selectSymbol();
+    }
+  }
+```
+---
+
+`readData()` This function checks the inputs if they are within the allowed range
+```dart
+  void readData(){
+    getBoard();
+    stdout.write('Player $playerNumber Enter your place to place $playerSymbol\n');
+    put = int.parse(stdin.readLineSync()!); //Taking input from player
+    if(put >= 0 && put <= 8){
+      checkSavePut();
+    }
+    else {
+      print('Error Input');
+      readData();
     }
   }
 ```
@@ -141,22 +159,20 @@ bool checkWin() {
 ---
 `playagain()` This function asks you if you want to play again 
 ```dart 
-void playagain(){
+ void playAgain(){
     stdout.write('-------------------------------------------------------------------------\n');
     stdout.write('If you want to play again, press 1, and if not, press 0\n');
     stdout.write('-------------------------------------------------------------------------\n');
 
-    int playagain = int.parse(stdin.readLineSync()!);
+    int readNo = int.parse(stdin.readLineSync()!);
 
-    // When you select 1, the game will restart from scratch
-    if(playagain == 1){
-      board = [0, 1, 2, 3, 4, 5, 6, 7, 8] ;
-      playTimes = 0 ;
+    if(readNo == 1){
+      board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+      playTimes = 0;
       noOneWin = true ;
       start();
     } else
-    // When you select 0, the game will end
-    if(playagain == 0){
+    if(readNo == 0){
       stdout.write('Thank you for playing the game');
     }else {
       stdout.write('Invaild input\n');
