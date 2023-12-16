@@ -1,9 +1,9 @@
 import 'dart:io';
 
 void main() {
-  GameTicTacToe TicTacToe = GameTicTacToe();
+  GameTicTacToe ticTacToe = GameTicTacToe();
   //Start game
-  TicTacToe.start();
+  ticTacToe.start();
 }
 
 class GameTicTacToe{
@@ -15,42 +15,54 @@ class GameTicTacToe{
   bool noOneWin = true ;
 
   void start(){
-    SelectSymbol();
+    selectSymbol();
     noOneWin == true;
 
     while(noOneWin){
-      getBoard();
-      stdout.write('Player $playerNumber Enter your place to place $playerSymbol\n');
-      put = int.parse(stdin.readLineSync()!); //Taking input from player
-      checkSavePut();
+      readData();
     }
-    playagain();
+    playAgain();
   }
 
-  void SelectSymbol(){
+  void readData(){
+    getBoard();
+    stdout.write('Player $playerNumber Enter your place to place $playerSymbol\n');
+    put = int.parse(stdin.readLineSync()!); //Taking input from player
+    if(put >= 0 && put <= 8){
+      checkSavePut();
+    }
+    else {
+      print('Error Input');
+      readData();
+    }
+  }
+  void selectSymbol(){
     stdout.write('Player $playerNumber Select \n1 for Symbol \'O\' \n2 for Symbol \'X\'\n');
     int No = int.parse(stdin.readLineSync()!);
     if (No == 1){
       playerSymbol = 'O';
     }else if(No == 2) {
       playerSymbol = 'X';
+    }else {
+      print('Error Input');
+      selectSymbol();
     }
   }
 
-  void playagain(){
+  void playAgain(){
     stdout.write('-------------------------------------------------------------------------\n');
     stdout.write('If you want to play again, press 1, and if not, press 0\n');
     stdout.write('-------------------------------------------------------------------------\n');
 
-    int playagain = int.parse(stdin.readLineSync()!);
+    int readNo = int.parse(stdin.readLineSync()!);
 
-    if(playagain == 1){
+    if(readNo == 1){
       board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
       playTimes = 0;
       noOneWin = true ;
       start();
     } else
-    if(playagain == 0){
+    if(readNo == 0){
       stdout.write('Thank you for playing the game');
     }else {
       stdout.write('Invaild input\n');
@@ -59,6 +71,7 @@ class GameTicTacToe{
 
   void checkSavePut(){
     //The site is checked if it is empty.
+
     if(board[put] == 'X'|| board[put] == 'O'){
       stdout.write('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n');
       stdout.write('Invaild input\n');
